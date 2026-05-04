@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "TI2/Vocabulary TI2.md",
+                "file": "TI2/Syntaxis TI2.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Vocabulary TI2"
+              "title": "Syntaxis TI2"
             }
           }
         ]
@@ -185,8 +185,9 @@
   },
   "active": "4bd2e095548acca0",
   "lastOpenFiles": [
-    "TI2/Theoretische Informationstechnik 2.md",
     "TI2/Vocabulary TI2.md",
+    "TI2/Syntaxis TI2.md",
+    "TI2/Theoretische Informationstechnik 2.md",
     "TI2"
   ]
 }
