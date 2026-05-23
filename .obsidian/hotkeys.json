@@ -1,0 +1,45 @@
+{
+  "file-explorer:open": [
+    {
+      "modifiers": [
+        "Alt",
+        "Mod"
+      ],
+      "key": "F"
+    }
+  ],
+  "file-explorer:reveal-active-file": [
+    {
+      "modifiers": [
+        "Alt",
+        "Mod"
+      ],
+      "key": "R"
+    }
+  ],
+  "editor:focus-right": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "X"
+    }
+  ],
+  "editor:focus-left": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "Z"
+    }
+  ],
+  "file-explorer:move-file": [
+    {
+      "modifiers": [
+        "Alt",
+        "Mod"
+      ],
+      "key": "M"
+    }
+  ]
+}
