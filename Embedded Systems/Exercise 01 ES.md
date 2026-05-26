@@ -107,3 +107,76 @@ How:
 	6) Execute ISR,
 	7) Restore Context,
 	8) Restore PC <-> set GIEB to 1
+
+Task 4
+a) What is a counter? What is a timer? 
+- Counter — is a hardware unit that counts external events.
+	  Counter is just a register that increases or decreases. The difference is what makes it count.
+- Timer — is a special counter that counts clock cycles. 
+	  IN timer mode, the counter counts pulses from the internal cpu/i/o clock, usually after prescaler (the thing that divides the main frequency of the clock). This is used for delays, periodic interrupts, measuring time, generating PWM, scheduling tasks.
+
+b) What components does timer 1 of the ATmega16 have? How are thy configured? 
+- Counter register
+- Compare register
+- Input capture register
+All of them have high byte and low byte, so they're all 16 bit. 
+- Control register (A/B)
+
+d) How is the reading and writing of a 16 bit value made atomic? 
+- parallel reading/writing 
+	  for reading it's first low byte and then high byte
+	  For writing it's first high byte and then low byte 
+Atomic operation is an operation that cannot be observed half-done. So another piece of code — for example an interrupt service routine — cannot see or interfere with the operation in the middle. Atomicity means no interruption in the critical part.
+
+An atomic 16-bit read means:
+```
+interrupts disabledread 
+low byteread 
+high byte
+interrupts restored
+```
+Disabling interrupt is necessary!
+
+d) What is a watch dog? 
+- Special timer 
+- Initial value != 0.
+- Counts down to 0. 
+- When reaches 0 makes micro controller to reset.
+
+e) Why might it be necessary to temporarily disable interrupts when reading a 16 bit values? (on a 8-bt platform)
+
+Example:
+```
+counter initially = 0x00FF
+```
+Main code reads the low byte:
+```
+low byte = 0xFF
+```
+Then an interrupt occurs and changes `counter` to:
+```
+counter = 0x0100
+```
+Then main code continues and reads the high byte:
+```
+high byte = 0x01
+```
+Now main code combines:
+```
+high byte = 0x01low byte  = 0xFF
+```
+Result:
+```
+x = 0x01FF
+```
+But `counter` was never actually `0x01FF`.
+
+Task 5
+
+a) What analog devices could be found on ATMega16? 
+4 PWM channels, 8 10-bit A/D converter (Successive Approximation Converter), 1 analog comparator. 
+
+b) What is PWM and ow does it work? 
+- Pulse Width Modulation is used to approach analogue value using digital signal. 
+
+c) Sketch a successive approximation converter and explain how it works. 
